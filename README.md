@@ -19,7 +19,9 @@ As an external Cyber Security Advisor, this lab demonstrates how to bridge corpo
 *   `reports/nist_csf_report.md` : Automatically generated detailed NIST CSF 2.0 maturity report.
 *   `reports/gdpr_compliance_analysis.md` : Regulatory analysis focused on GDPR Articles 5 (Principles), 25 (Privacy by Design/Default), 32 (Security of Processing), and 33 (Data Breach Notification).
 *   `reports/roadmap_recommendations.md` : Prioritized strategic roadmap (Urgency High/Medium/Low) based on Risk vs. Effort optimization (Pareto principle).
+*   `reports/poc_incident_cnil_notification.txt` : Automatically generated formal draft of GDPR Article 33 declaration after a detected security event.
 *   `reports/presentation_slides.md` : Structure and trame of the 5-10 minute pitch presentation for CODIR or academic defense.
+*   `scripts/poc_privacy_compliance.py` : Active Proof of Concept demonstrating tokenization (Privacy by Design) and real-time GDPR Article 33 incident response automation.
 
 ---
 
@@ -29,6 +31,14 @@ This lab utilizes code to prove compliance. To run the automated scoring and gen
 
 ```bash
 python3 scripts/scoring_nist_csf.py
+```
+
+### 🧪 Interactive Proof-of-Concept (PoC): Privacy by Design & Automated Breach Response
+
+To demonstrate the concrete implementation of GDPR Article 25 (Tokenization & Masking) and GDPR Article 33 (Data Breach detection and automatic CNIL notification), execute the companion PoC script:
+
+```bash
+python3 scripts/poc_privacy_compliance.py
 ```
 
 ### Console Output Preview
