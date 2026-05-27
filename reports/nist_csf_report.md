@@ -1,27 +1,27 @@
-# NIST Cybersecurity Framework 2.0 Evaluation Report
-**Date:** 2026-05-27
-**Organization:** Syntaris Group
-**Auditor:** Cyber Security Advisory Lab
+# Rapport d'Évaluation de Maturité NIST CSF 2.0
+**Date :** 2026-05-27
+**Organisation :** Syntaris Group
+**Auditeur :** Cabinet d'Audit et de Conseil Cybersécurité
 
-## Executive Summary
-This report presents the cybersecurity maturity posture of Syntaris Group evaluated against the NIST CSF 2.0 framework. Syntaris operations as a fintech handling payment processing and digital KYC require robust defensive and resilience controls. Currently, Syntaris shows traits of Tier 1 (Partial) / Tier 2 (Risk Informed) maturity, with an objective to achieve Tier 3 (Repeatable) / Tier 4 (Adaptive) to satisfy merchant clients and ensure transatlantic GDPR/PCI-DSS compliance.
+## 1. Synthèse Exécutive
+Ce rapport présente l'état de la maturité en cybersécurité de Syntaris Group évalué par rapport au référentiel international NIST CSF 2.0. Les activités de Syntaris en tant que fintech (traitement de paiements et vérification d'identité KYC biométrique) imposent des contrôles de protection et de résilience cyber extrêmement rigoureux. Actuellement, Syntaris présente des caractéristiques de niveau de maturité Tier 1 (Partiel) / Tier 2 (Informé du risque), avec un objectif d'atteindre le niveau Tier 3 (Répétable) / Tier 4 (Adaptatif) pour rassurer ses clients bancaires et s'assurer de sa conformité réglementaire transatlantique (RGPD / PCI-DSS).
 
-## Function-level Maturity Summary
+## 2. Résumé de la Maturité par Fonction NIST
 
-| Function | Code | Current Score | Target Score | Gap | Maturity Tier (Target) |
+| Fonction NIST | Code | Score Actuel | Score Cible | Écart (Gap) | Niveau Cible Visé |
 |---|---|---|---|---|---|
-| Govern | GV | 1.50 / 4.0 | 3.67 / 4.0 | +2.17 | Tier 3 (Repeatable) |
-| Identify | ID | 1.50 / 4.0 | 3.75 / 4.0 | +2.25 | Tier 3 (Repeatable) |
-| Protect | PR | 1.83 / 4.0 | 4.00 / 4.0 | +2.17 | Tier 4 (Adaptive) |
-| Detect | DE | 1.50 / 4.0 | 4.00 / 4.0 | +2.50 | Tier 4 (Adaptive) |
-| Respond | RS | 1.00 / 4.0 | 4.00 / 4.0 | +3.00 | Tier 4 (Adaptive) |
-| Recover | RC | 1.00 / 4.0 | 4.00 / 4.0 | +3.00 | Tier 4 (Adaptive) |
-| **OVERALL** | **ALL** | **1.50 / 4.0** | **3.86 / 4.0** | **+2.36** | **Tier 3 (Repeatable)** |
+| Gouverner (Govern) | GV | 1.50 / 4.0 | 3.67 / 4.0 | +2.17 | Tier 3 (Répétable) |
+| Identifier (Identify) | ID | 1.50 / 4.0 | 3.75 / 4.0 | +2.25 | Tier 3 (Répétable) |
+| Protéger (Protect) | PR | 1.83 / 4.0 | 4.00 / 4.0 | +2.17 | Tier 4 (Adaptatif) |
+| Détecter (Detect) | DE | 1.50 / 4.0 | 4.00 / 4.0 | +2.50 | Tier 4 (Adaptatif) |
+| Répondre (Respond) | RS | 1.00 / 4.0 | 4.00 / 4.0 | +3.00 | Tier 4 (Adaptatif) |
+| Récupérer (Recover) | RC | 1.00 / 4.0 | 4.00 / 4.0 | +3.00 | Tier 4 (Adaptatif) |
+| **GLOBAL** | **TOTAL** | **1.50 / 4.0** | **3.86 / 4.0** | **+2.36** | **Tier 3 (Répétable)** |
 
 
-## Identified Gaps & Details
+## 3. Détails des Écarts par Sous-Catégorie
 
-| Code | Subcategory Name | Current | Target | Justification |
+| Code | Nom de la Sous-Catégorie | Score Actuel | Score Cible | Justification / Constats d'Audit |
 |---|---|---|---|---|
 | GV.OC-01 | Mission organisationnelle comprise | 2 | 4 | La mission est comprise de facon informelle mais non formalisee dans une charte d entreprise. |
 | GV.OC-03 | Exigences legales et reglementaires comprises | 2 | 4 | Le RGPD et PCI-DSS sont identifies mais pas completement integres dans les processus techniques. |
@@ -46,9 +46,9 @@ This report presents the cybersecurity maturity posture of Syntaris Group evalua
 | RC.RP-01 | Plan de reprise execute | 1 | 4 | Pas de plan de continuite ni de reprise d activite (PCA/PRA) formalise et teste pour la fintech. |
 | RC.RP-03 | Integrite sauvegardes verifiee | 1 | 4 | Aucun test formel de restauration des sauvegardes n est realise regulierement. |
 
-## Core Recommendations
-1. **Formalize Security Governance (Govern - GV):** Draft and authorize a formal Information Security Policy (PSSI) and officially designate a Data Protection Officer (DPO).
-2. **Implement Data Lifecycle Mapping (Identify - ID):** Conduct data mapping flows for transactions and biometric KYC data.
-3. **Strengthen Platform Protections (Protect - PR):** Enforce strict multi-factor authentication (MFA) across all administrative and developer endpoints, and integrate automated static code analysis (SAST) in CI/CD pipeline.
-4. **Establish Real-Time Monitoring & Detection (Detect - DE):** Partner with a Managed SOC or centralize logs into a SIEM for 24/7 security event correlation.
-5. **Develop Incident & Recovery Plans (Respond & Recover - RS/RC):** Create incident response plans tailored to data breach notification (GDPR Art. 33) and business continuity plans (PCA/PRA).
+## 4. Recommandations Cyber Majeures
+1. **Formaliser la Gouvernance de Sécurité (Govern - GV) :** Rédiger et faire approuver une Politique de Sécurité des Systèmes d'Information (PSSI) globale et désigner un Délégué à la Protection des Données (DPO) officiel.
+2. **Cartographier le Cycle de Vie des Données (Identify - ID) :** Réaliser une cartographie complète des flux de données personnelles et de transaction financière.
+3. **Renforcer la Sécurité des Plateformes (Protect - PR) :** Rendre obligatoire l'authentification forte (MFA) sur l'ensemble des consoles d'administration cloud et postes de développement. Intégrer de l'analyse de code automatisée (SAST) dans la chaîne de déploiement CI/CD.
+4. **Déployer une Surveillance Continue (Detect - DE) :** Mettre en œuvre une centralisation des logs (SIEM) et externaliser la surveillance en temps réel 24/7 à un SOC managé.
+5. **Rédiger les Plans d'Urgence et de Reprise (Respond & Recover - RS/RC) :** Créer un Playbook officiel de réponse aux violations de données (CNIL 72h) et élaborer des plans de continuité et de reprise d'activité (PCA/PRA).

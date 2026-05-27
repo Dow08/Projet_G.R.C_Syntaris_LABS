@@ -1,98 +1,98 @@
-# Slide Deck: Syntaris Group GRC Audit
-## NIST CSF 2.0 & GDPR Strategic Security Plan
-**Presenter:** Dorian Poncelet — Cyber Security Advisor
+# Support de Présentation : Audit GRC de Syntaris Group
+## Plan Stratégique de Sécurité et de Conformité NIST CSF 2.0 & RGPD
+**Présentateur :** Dorian Poncelet — Conseiller en Cybersécurité
 
 ---
 
-## Slide 1: Executive Context
-### Who is Syntaris Group?
-*   **Business:** Fintech provider handling online payment processing and digital Identity Verification (KYC).
-*   **Scale:** Rapid transatlantic expansion (Europe and United States).
-*   **Infrastructure:** Hybrid Cloud Architecture (AWS/Azure for transaction processing, secure on-premises office for corporate administration).
-*   **Compliance Drivers:** GDPR (Europe), PCI-DSS (Payment Industry), and client demands for mature cybersecurity.
+## Diapositive 1 : Contexte de l'Audit
+### Qui est Syntaris Group ?
+*   **Activité :** Fournisseur de solutions fintech de paiement numérique en ligne et de vérification d'identité numérique (KYC).
+*   **Envergure :** Forte croissance et opérations transatlantiques (Europe et États-Unis).
+*   **Infrastructure :** Architecture hybride Cloud-Local (Cloud public AWS/Azure pour le moteur transactionnel, serveurs sur site sécurisés pour l'administration et le corporatif).
+*   **Enjeux de Conformité :** RGPD (Europe), PCI-DSS (Secteur bancaire) et exigences de maturité cyber formulées par les banques partenaires.
 
 ---
 
-## Slide 2: Critical Asset & Data Mapping
-*   **Personal Financial Data (GDPR / PCI-DSS):**
-    *   Credit card numbers (PAN), transaction records, bank accounts.
-*   **Biometric & Identity Data (GDPR Art. 9 / KYC):**
-    *   Passeport/ID card scans, facial biometric templates.
-    *   *Note:* Biometric data is classified as sensitive, requiring a mandatory DPIA (AIPD) and DPO appointment.
-*   **Corporate Data:**
-    *   Internal source code, API keys, customer database metadata.
+## Diapositive 2 : Cartographie des Actifs & Données Critiques
+*   **Données Financières (RGPD / PCI-DSS) :**
+    *   Numéros de cartes bancaires (PAN), montants et historique des transactions de paiement.
+*   **Données d'Identité et de Biométrie (RGPD Art. 9 / KYC) :**
+    *   Scans de passeports/cartes d'identité, gabarits biométriques de reconnaissance faciale.
+    *   *Alerte de Conformité :* Traiter de la biométrie (données sensibles) rend obligatoire la nomination d'un DPO et la réalisation d'une Analyse d'Impact (AIPD/DPIA).
+*   **Données Système & Propriété Intellectuelle :**
+    *   Code source des APIs de paiement, clés d'accès API de production, configurations cloud.
 
 ---
 
-## Slide 3: Top 3 Business Risks
-1.  **Breach of KYC & Biometric Databases:**
-    *   *Impact:* Up to 4% global turnover fine (GDPR Art. 83), complete loss of banking trust, CNIL audit.
-2.  **Payment Platform Downtime (DDoS / Cloud Outage):**
-    *   *Impact:* Immediate financial losses, contract SLA penalties with merchants, business disruption.
-3.  **Software Supply Chain Attack (Magecart style):**
-    *   *Impact:* Malicious code injected into transaction APIs, leading to real-time credit card theft.
+## Diapositive 3 : Top 3 des Risques d'Entreprise
+1.  **Exfiltration ou fuite de la base KYC & Biométrique :**
+    *   *Impact :* Amende administrative jusqu'à 4% du CA mondial (Art. 83), perte de confiance instantanée des marchands, audit de la CNIL.
+2.  **Indisponibilité de la plateforme de paiement (DDoS / Ransomware) :**
+    *   *Impact :* Perte de chiffre d'affaires immédiate, pénalités contractuelles (SLA) avec les marchands en ligne.
+3.  **Piratage de la chaîne d'approvisionnement logiciel (Software Supply Chain) :**
+    *   *Impact :* Injection de code malveillant sur les APIs de paiement (type Magecart) volant les cartes de crédit en temps réel lors du traitement.
 
 ---
 
-## Slide 4: NIST CSF 2.0 Maturity Profile
-*   **Global Current Score:** **1.50 / 4.0** (Tier 1 - Partial)
-*   **Global Target Score:** **3.86 / 4.0** (Tier 3/4 - Repeatable/Adaptive)
+## Diapositive 4 : Profil de Maturité NIST CSF 2.0
+*   **Score Moyen Actuel :** **1.50 / 4.0** *(Niveau 1 - Partiel / Niveau 2 - Informé)*
+*   **Score Moyen Cible :** **3.86 / 4.0** *(Niveau 3 - Répétable / Niveau 4 - Adaptatif)*
 
-### Function-level Results:
-*   **Govern (GV):** Current 1.50 -> Target 3.67 *(Gap: +2.17)*
-*   **Identify (ID):** Current 1.50 -> Target 3.75 *(Gap: +2.25)*
-*   **Protect (PR):** Current 1.83 -> Target 4.00 *(Gap: +2.17)*
-*   **Detect (DE):** Current 1.50 -> Target 4.00 *(Gap: +2.50)*
-*   **Respond (RS):** Current 1.00 -> Target 4.00 *(Gap: +3.00)* - **CRITICAL GAP**
-*   **Recover (RC):** Current 1.00 -> Target 4.00 *(Gap: +3.00)* - **CRITICAL GAP**
-
----
-
-## Slide 5: GDPR Focus — Critical Gaps
-*   **Article 5 (Minimization):** Unlimited retention of passport scans and raw biometric templates.
-*   **Article 25 (Privacy by Design/Default):** Developpers using real client production data for local testing; raw PAN stored in logs.
-*   **Article 32 (Security):** Inconsistent MFA on engineering accounts; lack of standard configurations and SAST code scanning.
-*   **Article 33 (Breach Notification):** No formal 72h incident response plan, no designated DPO.
+### Résultats par Fonction :
+*   **Govern (GV) :** Actuel 1.50 -> Cible 3.67 *(Écart : +2.17)*
+*   **Identify (ID) :** Actuel 1.50 -> Cible 3.75 *(Écart : +2.25)*
+*   **Protect (PR) :** Actuel 1.83 -> Cible 4.00 *(Écart : +2.17)*
+*   **Detect (DE) :** Actuel 1.50 -> Cible 4.00 *(Écart : +2.50)*
+*   **Respond (RS) :** Actuel 1.00 -> Cible 4.00 *(Écart : +3.00)* - **ÉCART CRITIQUE**
+*   **Recover (RC) :** Actuel 1.00 -> Cible 4.00 *(Écart : +3.00)* - **ÉCART CRITIQUE**
 
 ---
 
-## Slide 6: Roadmap Priority 1: Quick Wins (0-30 Days)
-### Core Focus: Legal Safeguarding & Access Control
-*   **REC-01: Appoint a DPO & Author the 72H Breach Notification Playbook**
-    *   *Objective:* Strict compliance with GDPR Art. 33 and 37. Define exact escalation and notification templates.
-    *   *Owner:* General Counsel / CEO.
-*   **REC-02: Enforce Mandatory MFA across Cloud and Code repositories**
-    *   *Objective:* Stop 99% of bulk credential attacks.
-    *   *Owner:* DevOps / IT Security.
+## Diapositive 5 : Focus RGPD — Écarts Majeurs Identifiés
+*   **Article 5 (Minimisation) :** Conservation indéfinie et non justifiée des scans de passeports et gabarits biométriques de KYC.
+*   **Article 25 (Privacy by Design/Default) :** Développeurs utilisant des données de clients réels pour déboguer ; numéros de cartes en clair visibles dans certains logs.
+*   **Article 32 (Sécurité) :** Absence de MFA obligatoire sur les postes des ingénieurs ; pas d'analyse automatisée de sécurité du code source.
+*   **Article 33 (Notification sous 72h) :** Pas de DPO désigné, absence totale de plan d'action d'urgence et de playbook de gestion de fuites de données.
 
 ---
 
-## Slide 7: Roadmap Priority 2: Technical Protections (30-90 Days)
-### Core Focus: Security Architecture & Resilience
-*   **REC-03: Implement Payment Tokenization and Synthetic Test Data**
-    *   *Objective:* Conform to PCI-DSS and GDPR Art. 25 (Privacy by Design). Avoid raw payment cards storage.
-    *   *Owner:* Software Engineering / QA.
-*   **REC-04: Secure Backup Strategy & AES-256 Encryption**
-    *   *Objective:* Protect against ransomware and ensure offline immutable data persistence.
-    *   *Owner:* IT Infrastructure.
+## Diapositive 6 : Feuille de Route Priorité 1 : Quick Wins (0-30 Jours)
+### Objectif : Protection Juridique et Contrôle d'Accès Critique
+*   **REC-01 : Désigner un DPO et Rédiger le Playbook de Notification CNIL sous 72H**
+    *   *Mesure :* Assurer la conformité légale immédiate aux Articles 33 et 37. Préparer les modèles d'escalade et de déclaration de crise.
+    *   *Responsable :* Direction Générale / Affaires Juridiques.
+*   **REC-02 : Activer le MFA Obligatoire sur les Accès d'Administration et Dépôts de Code**
+    *   *Mesure :* Éliminer 99% des risques d'accès non autorisés par phishing ou vol de mot de passe.
+    *   *Responsable :* DevOps / Sécurité IT.
 
 ---
 
-## Slide 8: Roadmap Priority 3: Mature Operations (90-180 Days)
-### Core Focus: Continuous Governance & Detection
-*   **REC-05: Draft the Information Security Policy (PSSI) & User Charter**
-    *   *Objective:* Formalize security expectations for employees and define acceptable use rules.
-    *   *Owner:* CISO / HR.
-*   **REC-06: Outsource to a Managed SOC (Security Operations Center)**
-    *   *Objective:* Real-time, 24/7 security event monitoring and log correlation via SIEM.
-    *   *Owner:* IT Security Director.
+## Diapositive 7 : Feuille de Route Priorité 2 : Protections (30-90 Jours)
+### Objectif : Sécurisation Technique et Résilience Opérationnelle
+*   **REC-03 : Tokenisation des Cartes Bancaires & Génération de Données de Test**
+    *   *Mesure :* Remplacer les cartes par des jetons (PCI-DSS) et automatiser la création de bases de test synthétiques (Art 25 - Privacy by Default).
+    *   *Responsable :* Ingénierie Logicielle / Équipe QA.
+*   **REC-04 : Chiffrement AES-256 des Bases de Données et Sauvegardes Froides**
+    *   *Mesure :* Chiffrer au repos et créer des sauvegardes déconnectées (offline) immuables pour se prémunir des ransomwares.
+    *   *Responsable :* Infrastructure IT.
 
 ---
 
-## Slide 9: Conclusion
-### Key Takeaways for Syntaris Group
-*   **Security is a Business Enabler:** Attaining a mature NIST CSF 2.0 posture is necessary to sign large banking partners.
-*   **GDPR Compliance is Mandatory:** Transitioning from biometric data retention to tokenized KYC status protects Syntaris from catastrophic fines.
-*   **Automation of GRC:** Using structured data (CSV) and automated compliance scripts ensures continuous verification and real-time reporting.
+## Diapositive 8 : Feuille de Route Priorité 3 : Gouvernance (90-180 Jours)
+### Objectif : Amélioration Continue et Détection Continue
+*   **REC-05 : Rédiger la PSSI de Syntaris et la Charte Informatique Collaborateur**
+    *   *Mesure :* Formaliser les attentes de sécurité et sensibiliser l'ensemble du personnel pour limiter l'ingénierie sociale.
+    *   *Responsable :* RSSI / RH / DPO.
+*   **REC-06 : Surveillance 24/7 via la mise en place d'un SOC Managé Tiers**
+    *   *Mesure :* Centraliser les logs de sécurité (SIEM) et externaliser l'analyse et la levée de doute en temps réel à un partenaire de confiance.
+    *   *Responsable :* Directeur de la Sécurité IT.
 
-### Thank you! Questions?
+---
+
+## Diapositive 9 : Conclusion
+### Enseignements Clés pour Syntaris Group
+*   **La Sécurité comme Accélérateur de Business :** Une gouvernance mature NIST CSF 2.0 est un prérequis indispensable pour rassurer et signer de grands partenaires bancaires.
+*   **La Protection des Données est Non Négociable :** Passer de la conservation de documents biométriques bruts à un statut KYC tokenisé protège Syntaris des amendes réglementaires majeures.
+*   **GRC Moderne et Technique :** Utiliser des bases de données structurées (CSV) et des scripts d'analyse automatisés assure un audit continu, fiable et directement présentable au CODIR.
+
+### Merci pour votre attention ! Questions ?

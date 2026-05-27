@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import csv
 import sys
 from collections import defaultdict
 from datetime import datetime
 
-# Mapping codes to function names
+# Cartographie des fonctions NIST CSF 2.0
 FUNCTIONS = {
-    "GV": "Govern",
-    "ID": "Identify",
-    "PR": "Protect",
-    "DE": "Detect",
-    "RS": "Respond",
-    "RC": "Recover"
+    "GV": "Gouverner (Govern)",
+    "ID": "Identifier (Identify)",
+    "PR": "Protéger (Protect)",
+    "DE": "Détecter (Detect)",
+    "RS": "Répondre (Respond)",
+    "RC": "Récupérer (Recover)"
 }
 
 def load_evaluation(csv_path):
@@ -30,7 +31,7 @@ def load_evaluation(csv_path):
                     "justification": row["justification"].strip()
                 })
     except Exception as e:
-        print(f"Error loading CSV file: {e}")
+        print(f"Erreur lors du chargement du fichier CSV : {e}")
         sys.exit(1)
     return data
 
@@ -46,35 +47,35 @@ def calculate_metrics(data):
 
 def draw_ascii_chart(metrics):
     print("\n" + "="*60)
-    print("      NIST CSF 2.0 MATURITY PROFILE: CURRENT VS TARGET")
+    print("      PROFIL DE MATURITE NIST CSF 2.0 : ACTUEL VS CIBLE")
     print("="*60)
     for fn, name in FUNCTIONS.items():
         m = metrics[fn]
         avg_actuel = m["actuel_sum"] / m["count"] if m["count"] else 0.0
         avg_cible = m["cible_sum"] / m["count"] if m["count"] else 0.0
         
-        # Draw bars
+        # Dessiner les barres
         bar_actuel = "█" * int(round(avg_actuel * 5)) + "░" * (20 - int(round(avg_actuel * 5)))
         bar_cible = "█" * int(round(avg_cible * 5)) + "░" * (20 - int(round(avg_cible * 5)))
         
         print(f"\n{fn} - {name.upper()}:")
-        print(f"  Current: [{bar_actuel}] {avg_actuel:.2f} / 4.0")
-        print(f"  Target:  [{bar_cible}] {avg_cible:.2f} / 4.0")
-        print(f"  Gap:     {avg_cible - avg_actuel:+.2f}")
+        print(f"  Actuel: [{bar_actuel}] {avg_actuel:.2f} / 4.0")
+        print(f"  Cible:  [{bar_cible}] {avg_cible:.2f} / 4.0")
+        print(f"  Écart:  {avg_cible - avg_actuel:+.2f}")
     print("="*60 + "\n")
 
 def generate_report(data, metrics, output_path):
     lines = []
-    lines.append("# NIST Cybersecurity Framework 2.0 Evaluation Report")
-    lines.append(f"**Date:** {datetime.now().strftime('%Y-%m-%d')}")
-    lines.append("**Organization:** Syntaris Group")
-    lines.append("**Auditor:** Cyber Security Advisory Lab\n")
+    lines.append("# Rapport d'Évaluation de Maturité NIST CSF 2.0")
+    lines.append(f"**Date :** {datetime.now().strftime('%Y-%m-%d')}")
+    lines.append("**Organisation :** Syntaris Group")
+    lines.append("**Auditeur :** Cabinet d'Audit et de Conseil Cybersécurité\n")
     
-    lines.append("## Executive Summary")
-    lines.append("This report presents the cybersecurity maturity posture of Syntaris Group evaluated against the NIST CSF 2.0 framework. Syntaris operations as a fintech handling payment processing and digital KYC require robust defensive and resilience controls. Currently, Syntaris shows traits of Tier 1 (Partial) / Tier 2 (Risk Informed) maturity, with an objective to achieve Tier 3 (Repeatable) / Tier 4 (Adaptive) to satisfy merchant clients and ensure transatlantic GDPR/PCI-DSS compliance.\n")
+    lines.append("## 1. Synthèse Exécutive")
+    lines.append("Ce rapport présente l'état de la maturité en cybersécurité de Syntaris Group évalué par rapport au référentiel international NIST CSF 2.0. Les activités de Syntaris en tant que fintech (traitement de paiements et vérification d'identité KYC biométrique) imposent des contrôles de protection et de résilience cyber extrêmement rigoureux. Actuellement, Syntaris présente des caractéristiques de niveau de maturité Tier 1 (Partiel) / Tier 2 (Informé du risque), avec un objectif d'atteindre le niveau Tier 3 (Répétable) / Tier 4 (Adaptatif) pour rassurer ses clients bancaires et s'assurer de sa conformité réglementaire transatlantique (RGPD / PCI-DSS).\n")
     
-    lines.append("## Function-level Maturity Summary\n")
-    lines.append("| Function | Code | Current Score | Target Score | Gap | Maturity Tier (Target) |")
+    lines.append("## 2. Résumé de la Maturité par Fonction NIST\n")
+    lines.append("| Fonction NIST | Code | Score Actuel | Score Cible | Écart (Gap) | Niveau Cible Visé |")
     lines.append("|---|---|---|---|---|---|")
     
     total_actuel = 0.0
@@ -91,40 +92,40 @@ def generate_report(data, metrics, output_path):
         total_cible += m["cible_sum"]
         total_count += m["count"]
         
-        tier = "Tier 3 (Repeatable)" if avg_cible >= 3.0 else "Tier 4 (Adaptive)"
+        tier = "Tier 3 (Répétable)" if avg_cible >= 3.0 else "Tier 4 (Adaptatif)"
         if avg_cible >= 3.8:
-            tier = "Tier 4 (Adaptive)"
+            tier = "Tier 4 (Adaptatif)"
             
         lines.append(f"| {name} | {fn} | {avg_actuel:.2f} / 4.0 | {avg_cible:.2f} / 4.0 | {gap:+.2f} | {tier} |")
         
     global_actuel = total_actuel / total_count if total_count else 0.0
     global_cible = total_cible / total_count if total_count else 0.0
-    lines.append(f"| **OVERALL** | **ALL** | **{global_actuel:.2f} / 4.0** | **{global_cible:.2f} / 4.0** | **{global_cible - global_actuel:+.2f}** | **Tier 3 (Repeatable)** |")
+    lines.append(f"| **GLOBAL** | **TOTAL** | **{global_actuel:.2f} / 4.0** | **{global_cible:.2f} / 4.0** | **{global_cible - global_actuel:+.2f}** | **Tier 3 (Répétable)** |")
     lines.append("\n")
     
-    lines.append("## Identified Gaps & Details\n")
-    lines.append("| Code | Subcategory Name | Current | Target | Justification |")
+    lines.append("## 3. Détails des Écarts par Sous-Catégorie\n")
+    lines.append("| Code | Nom de la Sous-Catégorie | Score Actuel | Score Cible | Justification / Constats d'Audit |")
     lines.append("|---|---|---|---|---|")
     for item in data:
         lines.append(f"| {item['sous_categorie']} | {item['nom']} | {item['score_actuel']:.0f} | {item['score_cible']:.0f} | {item['justification']} |")
         
-    lines.append("\n## Core Recommendations")
-    lines.append("1. **Formalize Security Governance (Govern - GV):** Draft and authorize a formal Information Security Policy (PSSI) and officially designate a Data Protection Officer (DPO).")
-    lines.append("2. **Implement Data Lifecycle Mapping (Identify - ID):** Conduct data mapping flows for transactions and biometric KYC data.")
-    lines.append("3. **Strengthen Platform Protections (Protect - PR):** Enforce strict multi-factor authentication (MFA) across all administrative and developer endpoints, and integrate automated static code analysis (SAST) in CI/CD pipeline.")
-    lines.append("4. **Establish Real-Time Monitoring & Detection (Detect - DE):** Partner with a Managed SOC or centralize logs into a SIEM for 24/7 security event correlation.")
-    lines.append("5. **Develop Incident & Recovery Plans (Respond & Recover - RS/RC):** Create incident response plans tailored to data breach notification (GDPR Art. 33) and business continuity plans (PCA/PRA).\n")
+    lines.append("\n## 4. Recommandations Cyber Majeures")
+    lines.append("1. **Formaliser la Gouvernance de Sécurité (Govern - GV) :** Rédiger et faire approuver une Politique de Sécurité des Systèmes d'Information (PSSI) globale et désigner un Délégué à la Protection des Données (DPO) officiel.")
+    lines.append("2. **Cartographier le Cycle de Vie des Données (Identify - ID) :** Réaliser une cartographie complète des flux de données personnelles et de transaction financière.")
+    lines.append("3. **Renforcer la Sécurité des Plateformes (Protect - PR) :** Rendre obligatoire l'authentification forte (MFA) sur l'ensemble des consoles d'administration cloud et postes de développement. Intégrer de l'analyse de code automatisée (SAST) dans la chaîne de déploiement CI/CD.")
+    lines.append("4. **Déployer une Surveillance Continue (Detect - DE) :** Mettre en œuvre une centralisation des logs (SIEM) et externaliser la surveillance en temps réel 24/7 à un SOC managé.")
+    lines.append("5. **Rédiger les Plans d'Urgence et de Reprise (Respond & Recover - RS/RC) :** Créer un Playbook officiel de réponse aux violations de données (CNIL 72h) et élaborer des plans de continuité et de reprise d'activité (PCA/PRA).\n")
     
     try:
         with open(output_path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
-        print(f"Detailed Markdown Report successfully generated: {output_path}")
+        print(f"[+] Rapport Markdown généré avec succès en français : {output_path}")
     except Exception as e:
-        print(f"Error writing markdown report: {e}")
+        print(f"Erreur lors de l'écriture du rapport : {e}")
 
 if __name__ == "__main__":
-    csv_file = "/root/syntaris-grc/data/nist_csf_evaluation.csv"
-    report_file = "/root/syntaris-grc/reports/nist_csf_report.md"
+    csv_file = "/workspace/data/nist_csf_evaluation.csv"
+    report_file = "/workspace/reports/nist_csf_report.md"
     
     data = load_evaluation(csv_file)
     metrics = calculate_metrics(data)

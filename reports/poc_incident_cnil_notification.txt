@@ -2,7 +2,7 @@
           PROJET DE DECLARATION DE VIOLATION DE DONNEES (CNIL)
                   CONFORME A L'ARTICLE 33 DU RGPD
 =====================================================================
-Date de Generation : 2026-05-27 08:51:07
+Date de Generation : 2026-05-27 08:56:45
 Statut de la declaration : Initiale (Notification dans les 72h)
 Organisme Responsable du Traitement : Syntaris Group Ltd
 Nom du Data Protection Officer (DPO) : seallia81@gmail.com (DPO Interimaire)
